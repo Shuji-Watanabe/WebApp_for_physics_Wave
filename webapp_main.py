@@ -84,11 +84,13 @@ def sympy_extractsymbols(str00):
     return str00_Val01
 
 #################### begin main program ##############
-st.markdown("##### 単振動(ばね振り子の運動)")
+st.header("波動の数理：学習支援用アプリ",divider="rainbow")
+st.markdown("このWebアプリは，単振動(ばね振り子の運動)に関する学習支援用アプリです．")
+
+st.subheader("問題の状況説明",divider="orange")
 Q_col,Fig_col = st.columns([7,4])
 with Q_col:
     """
-    ##### 状況設定
     ばね定数 $k\\rm \ [N/m]$ の軽いばねを，水平で滑らかな床の上に置いた．ばねの一端を壁に取り付け，
     もう一端に質量 $m \\rm\  [kg]$ の小物体を取り付ける．水平右向きを $x$ 軸方向とし，ばねが自然長で
     小物体が静止する位置を原点$\\rm O$ とする．小物体が運動を開始した時刻を $t=0 \\rm\ s$ とするとき，
@@ -199,7 +201,7 @@ elif len(x_ini_val) >= 2 :
 
 
 ##### Step 01 
-st.markdown("##### ▷ Step 1：バネに繋がれた小物体の運動方程式")
+st.subheader("##### ▷ Step 1：バネに繋がれた小物体の運動方程式",divider="orange")
 
 if check_float([Mass]) == 0:
     Mass_disp = latex(Mass.evalf(Significant_digits))
@@ -217,7 +219,7 @@ if st.sidebar.checkbox("運動方程式を表示") :
 
 
 ##### Step 02
-st.markdown("##### ▷ step 2：特性方程式")
+st.subheader("##### ▷ step 2：特性方程式",divider="orange")
 lambda_0 = Symbol(r"\lambda")
 lambda_0 = symbols('lambda_0')
 omega = Symbol(r"\omega")
@@ -241,7 +243,7 @@ if st.sidebar.checkbox("特性方程式とその解を表示") :
     st.latex(STR1_03)
 
 ##### Step 03
-st.markdown("##### ▷ Step 3：微分方程式の一般解")
+st.subheader("##### ▷ Step 3：微分方程式の一般解",divider="orange")
 # x_ini 
 if st.sidebar.checkbox("一般解を表示") :
     if omega_0 == 1 :
@@ -274,7 +276,7 @@ if st.sidebar.checkbox("一般解を表示") :
 
 ##### Step 04
 title_step4 = r"##### ▷ Step 4：微分方程式の初期条件を満たす特殊解"
-st.markdown(title_step4)
+st.subheader(title_step4,divider="orange")
 
 #-- set symbols and parameter
 phi = Symbol(r"\phi", real = True)
@@ -382,7 +384,7 @@ if st.sidebar.checkbox("特殊解を表示") :
 
 
 ##### Step 05
-st.markdown("##### ▷ Step 5：角振動数と周期")
+st.subheader("##### ▷ Step 5：角振動数と周期",divider="orange")
 import math
 from math import pi as math_pi
 from sympy import pi as sym_pi
@@ -403,7 +405,7 @@ if st.sidebar.checkbox("角振動数と周期を表示") :
 
 
 ##### Step 06
-st.markdown("##### ▷ Step 6：特殊解のグラフ")
+st.subheader("##### ▷ Step 6：特殊解のグラフ",divider="orange")
 CB_Step06_1 = st.sidebar.checkbox("特殊解のグラフを表示")
 if CB_Step06_1 :
     try:
@@ -449,4 +451,5 @@ end1_01+=" </div>"
 st.markdown(end1_01,unsafe_allow_html=True)
 
 st.sidebar.markdown("#### ver3.1(更新：2023.2.9)")
+st.sidebar.markdown("#### ver4.0(更新：2025.1.28)")
 
