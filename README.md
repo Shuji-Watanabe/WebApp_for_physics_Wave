@@ -1,0 +1,2 @@
+# WebApp_for_physics_Wave
+数理リテラシー，波動の数理用のWebアプリです
