@@ -104,10 +104,10 @@ with Fig_col:
     """
     try:
         image = '単振動01.jpg'
-        st.image(image,caption="ばねと質点の様子",use_column_width='auto')
+        st.image(image,caption="ばねと質点の様子",use_container_width='auto')
     except:
         image = '02_数理リテラシー/03_波動の数理_03/単振動01.jpg'
-        st.image(image,caption="ばねと小物体の様子",use_column_width='auto')
+        st.image(image,caption="ばねと小物体の様子",use_container_width='auto')
 
 st.sidebar.markdown("#### **条件変更**")
 if st.sidebar.checkbox("ばね振り子の質量，ばね定数，初期条件を変更") :
