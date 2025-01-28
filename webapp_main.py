@@ -201,7 +201,7 @@ elif len(x_ini_val) >= 2 :
 
 
 ##### Step 01 
-st.subheader("##### ▷ Step 1：バネに繋がれた小物体の運動方程式",divider="orange")
+st.subheader("▷ Step 1：バネに繋がれた小物体の運動方程式",divider="orange")
 
 if check_float([Mass]) == 0:
     Mass_disp = latex(Mass.evalf(Significant_digits))
@@ -219,7 +219,7 @@ if st.sidebar.checkbox("運動方程式を表示") :
 
 
 ##### Step 02
-st.subheader("##### ▷ step 2：特性方程式",divider="orange")
+st.subheader("▷ step 2：特性方程式",divider="orange")
 lambda_0 = Symbol(r"\lambda")
 lambda_0 = symbols('lambda_0')
 omega = Symbol(r"\omega")
@@ -243,7 +243,7 @@ if st.sidebar.checkbox("特性方程式とその解を表示") :
     st.latex(STR1_03)
 
 ##### Step 03
-st.subheader("##### ▷ Step 3：微分方程式の一般解",divider="orange")
+st.subheader("▷ Step 3：微分方程式の一般解",divider="orange")
 # x_ini 
 if st.sidebar.checkbox("一般解を表示") :
     if omega_0 == 1 :
@@ -384,7 +384,7 @@ if st.sidebar.checkbox("特殊解を表示") :
 
 
 ##### Step 05
-st.subheader("##### ▷ Step 5：角振動数と周期",divider="orange")
+st.subheader("▷ Step 5：角振動数と周期",divider="orange")
 import math
 from math import pi as math_pi
 from sympy import pi as sym_pi
@@ -405,7 +405,7 @@ if st.sidebar.checkbox("角振動数と周期を表示") :
 
 
 ##### Step 06
-st.subheader("##### ▷ Step 6：特殊解のグラフ",divider="orange")
+st.subheader("▷ Step 6：特殊解のグラフ",divider="orange")
 CB_Step06_1 = st.sidebar.checkbox("特殊解のグラフを表示")
 if CB_Step06_1 :
     try:
