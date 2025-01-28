@@ -110,7 +110,8 @@ with Fig_col:
     except:
         image = '02_数理リテラシー/03_波動の数理_03/単振動01.jpg'
         st.image(image,caption="ばねと小物体の様子",use_container_width='auto')
-
+""" """
+""" """
 st.sidebar.markdown("#### **条件変更**")
 if st.sidebar.checkbox("ばね振り子の質量，ばね定数，初期条件を変更") :
     col01,col02,col03,col04,col05 = st.columns(5)
@@ -198,11 +199,18 @@ elif len(v_ini_val) == 1 :
 elif len(x_ini_val) >= 2 :
     st.write("初速度に入力できるパラメーターを意味する文字は１文字までです．")
 # st.write(Mass_val,Sp_const_val,x_ini_val,v_ini_val)
-
+""" """
+""" """
 
 ##### Step 01 
 st.subheader("Step 1：バネに繋がれた小物体の運動方程式",divider="orange")
-
+f""" 
+バネ定数$\\ {Sp_const}\\ \\rm[N/m]\\ $のバネに対して，
+質量$\\ {Mass}\\ \\rm[kg]\\ $の小物体を取り付け，
+時刻$\\ t={x_ini}\\ \\rm[s]\\ $に
+位置$\\ x(0) = {x_ini}\\ \\rm[m]\\ $から，
+初速度$\\ v(0) = {v_ini}\\ \\rm[m/s]\\ $で運動を開始した小物体の運動方程式は次の式となる．
+"""
 if check_float([Mass]) == 0:
     Mass_disp = latex(Mass.evalf(Significant_digits))
 else :
@@ -216,16 +224,41 @@ st.sidebar.markdown("#### **各計算結果の表示**")
 if st.sidebar.checkbox("運動方程式を表示") :
     STR1_01 = f"{Mass_disp} \\cdot \\frac{{d^2 x}}{{dt^2}} = {Sp_const_disp } \\cdot x"
     st.latex(STR1_01)
+else :
+    st.info("運動方程式を求めてみよう")
+"""  """
+"""  """
+
+
 
 
 ##### Step 02
 st.subheader("step 2：特性方程式",divider="orange")
+f"""
+定数係数$\\ a,\\ b\\ $を持つ2階同次線形微分方程式
+$$
+\\frac{{d^2 x}}{{dt^2}}
++
+a
+\\frac{{d x}}{{dt}}
++
+b
+=
+0
+$$
+の解は，特性方程式
+$$
+\\lambda^2 + a \\lambda + b = 0
+$$
+の解によって，次のよう分類される．
+これを利用し，Step 1の運動方程式の解を求めると，次のようになる．
+"""
 lambda_0 = Symbol(r"\lambda")
 lambda_0 = symbols('lambda_0')
 omega = Symbol(r"\omega")
 omega = symbols('omega', positive=True)
-
 omega_0 = sqrt( simplify(Sp_const/Mass))
+
 
 if check_float([Mass,Sp_const]) == 0:
     omega_0_disp = latex(omega_0.evalf(Significant_digits))
@@ -241,6 +274,14 @@ if st.sidebar.checkbox("特性方程式とその解を表示") :
     STR1_03 = f"\\lambda_1 = i\\omega, \ \\lambda_2 = -i\\omega,\ \\omega = {omega_0_disp}"
     st.latex(STR1_02)
     st.latex(STR1_03)
+else:
+    st.info("特性方程式とその解を求めてみよう")
+
+"""  """
+"""  """
+
+
+
 
 ##### Step 03
 st.subheader("Step 3：微分方程式の一般解",divider="orange")
@@ -251,7 +292,6 @@ if st.sidebar.checkbox("一般解を表示") :
     else:
         STR1_04 =f" x(t)= A\cos \\big(  \\omega t +  \\phi \\big) = A\\cos \\left(  {omega_0_disp} t +  \\phi \\right)"
     st.latex(STR1_04)
-
 
     if st.checkbox("一般解を求める過程を表示"):
         """
@@ -270,7 +310,6 @@ if st.sidebar.checkbox("一般解を表示") :
         　　$\\displaystyle \\phantom{x(t)} = A\cos\\big( \phi + \omega t  \\big)$\n
         　　$\\displaystyle \\phantom{x(t)} = A\cos\\big(  \omega t +  \phi\\big)$\n
         """
-
 
 
 
