@@ -500,3 +500,4 @@ st.markdown(end1_01,unsafe_allow_html=True)
 st.sidebar.markdown("#### ver3.1(更新：2023.2.9)")
 st.sidebar.markdown("#### ver4.0(更新：2025.1.28)")
 
+st.sidebar.markdown("このWebアプリに関するアンケート調査への協力をお願い致します．[クリック](https://forms.office.com/r/mgPrkNZqyM)")
