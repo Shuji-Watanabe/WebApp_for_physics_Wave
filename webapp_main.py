@@ -6,6 +6,7 @@ from sympy.simplify.sqrtdenest import sqrtdenest
 from sympy.utilities.lambdify import lambdify
 import numpy as np
 from matplotlib import pyplot as plt
+import japanize_matplotlib
 
 
 init_printing(order='grevlex')
@@ -161,8 +162,6 @@ elif len(Mass_val) >=2 :
     st.error("パラメーターを表す文字は１文字にしてください．")
     st.stop()
 
-# st.write(Mass)
-# st.stop()
 
 Sp_const_val = sympy_extractsymbols(Sp_const)
 if len(Sp_const_val) == 0:
@@ -204,25 +203,29 @@ elif len(x_ini_val) >= 2 :
 
 ##### Step 01 
 st.subheader("Step 1：バネに繋がれた小物体の運動方程式",divider="orange")
+
+tmp_param = [Mass,Sp_const,v_ini,x_ini]
+for tmp_num, tmp_val in enumerate(tmp_param):
+    if check_float([tmp_val]) == 0:
+        tmp_param[tmp_num] = latex(tmp_val.evalf(Significant_digits))
+    else :
+        tmp_param[tmp_num] = latex(tmp_val)
+Mass_disp,Sp_const_disp, v_ini_disp, x_ini_disp = tmp_param 
+
 f""" 
-バネ定数$\\ {Sp_const}\\ \\rm[N/m]\\ $のバネに対して，
-質量$\\ {Mass}\\ \\rm[kg]\\ $の小物体を取り付け，
-時刻$\\ t={x_ini}\\ \\rm[s]\\ $に
-位置$\\ x(0) = {x_ini}\\ \\rm[m]\\ $から，
-初速度$\\ v(0) = {v_ini}\\ \\rm[m/s]\\ $で運動を開始した小物体の運動方程式は次の式となる．
+バネ定数$\\ {Sp_const_disp}\\ \\rm[N/m]\\ $のバネに対して，
+質量$\\ {Mass_disp}\\ \\rm[kg]\\ $の小物体を取り付け，
+時刻$\\ t=0\\ \\rm[s]\\ $に
+位置$\\ x(0) = {x_ini_disp}\\ \\rm[m]\\ $から，
+初速度$\\ v(0) = {v_ini_disp}\\ \\rm[m/s]\\ $で運動を開始した小物体の運動方程式は次の式となる．
+（詳しくは
+[KIT物理ナビゲーション](https://w3e.kanazawa-it.ac.jp/math/physics/category/mechanics/masspoint_mechanics/simple_harmonic_motion/henkan-tex.cgi?target=/math/physics/category/mechanics/masspoint_mechanics/simple_harmonic_motion/shm_equation_of_motion.html)
+を参照）
 """
-if check_float([Mass]) == 0:
-    Mass_disp = latex(Mass.evalf(Significant_digits))
-else :
-    Mass_disp = latex(Mass)
-if check_float([Sp_const]) == 0:
-    Sp_const_disp = latex(-1*Sp_const.evalf(Significant_digits))
-else :
-    Sp_const_disp = latex(-1*Sp_const)
 
 st.sidebar.markdown("#### **各計算結果の表示**")
 if st.sidebar.checkbox("運動方程式を表示") :
-    STR1_01 = f"{Mass_disp} \\cdot \\frac{{d^2 x}}{{dt^2}} = {Sp_const_disp } \\cdot x"
+    STR1_01 = f"{Mass_disp} \\cdot \\frac{{d^2 x}}{{dt^2}} = -{Sp_const_disp } \\cdot x"
     st.latex(STR1_01)
 else :
     st.info("運動方程式を求めてみよう")
@@ -233,7 +236,7 @@ else :
 
 
 ##### Step 02
-st.subheader("step 2：特性方程式",divider="orange")
+st.subheader("Step 2：特性方程式",divider="orange")
 f"""
 定数係数$\\ a,\\ b\\ $を持つ2階同次線形微分方程式
 $$
@@ -250,8 +253,12 @@ $$
 $$
 \\lambda^2 + a \\lambda + b = 0
 $$
-の解によって，次のよう分類される．
-これを利用し，Step 1の運動方程式の解を求めると，次のようになる．
+の解によって3通りに分類できる.
+（詳細は
+[KIT数学ナビゲーションへ](https://w3e.kanazawa-it.ac.jp/math/category/bibun/bibunhouteisiki/henkan-tex.cgi?target=/math/category/bibun/bibunhouteisiki/nikaiteisuukeisuu_no_kai.html)
+を参照）
+
+これを利用し，Step 1の運動方程式の一般解を求めると，次のようになる．
 """
 lambda_0 = Symbol(r"\lambda")
 lambda_0 = symbols('lambda_0')
@@ -353,6 +360,7 @@ if check_float([Ans_A_1]) == 0 :
     A_disp =latex( simplify(Ans_A_1).evalf(Significant_digits))
 else:
     A_disp =latex(simplify(Ans_A_1))
+
 if check_float([omega_0,Ans_phi]) == 0 :
     theta_disp = latex( collect( theta.evalf(Significant_digits),t))
 else:
@@ -458,8 +466,8 @@ if CB_Step06_1 :
         function0 = cos( pi/5 * t )
         col2_01,col2_02=st.columns([3,1]) 
         with col2_02:
-            xrange_min = st.number_input("▷ xの最小値",value=0,key=2)            
-            xrange_max = st.number_input("▷ xの最大値",value=10,key=3)
+            xrange_min = st.number_input("▷ tの最小値",value=0,key=2)            
+            xrange_max = st.number_input("▷ tの最大値",value=10,key=3)
         with col2_01:
             ts = np.linspace( xrange_min, xrange_max, 100)
             ys = lambdify(t, function0, "numpy")(ts)
@@ -472,8 +480,8 @@ if CB_Step06_1 :
     else:
         col2_01,col2_02=st.columns([3,1]) 
         with col2_02:
-            xrange_min = st.number_input("▷ xの最小値",value=0,key=1)            
-            xrange_max = st.number_input("▷ xの最大値",value=10,key=2)
+            xrange_min = st.number_input("▷ tの最小値",value=0,key=1)            
+            xrange_max = st.number_input("▷ tの最大値",value=10,key=2)
         with col2_01:
             ts = np.linspace( xrange_min, xrange_max, 1000)
             ys = lambdify(t, function0, "numpy")(ts)
