@@ -6,7 +6,7 @@ from sympy.simplify.sqrtdenest import sqrtdenest
 from sympy.utilities.lambdify import lambdify
 import numpy as np
 from matplotlib import pyplot as plt
-import japanize_matplotlib
+
 
 
 init_printing(order='grevlex')
@@ -472,8 +472,8 @@ if CB_Step06_1 :
             ts = np.linspace( xrange_min, xrange_max, 100)
             ys = lambdify(t, function0, "numpy")(ts)
             fig, ax = plt.subplots()
-            plt.xlabel("$t$軸")
-            plt.ylabel("$x$軸")
+            plt.xlabel("$t$")
+            plt.ylabel("$x$")
             ax.plot(ts, ys)
             ax.grid()
             st.pyplot(fig)
@@ -486,8 +486,8 @@ if CB_Step06_1 :
             ts = np.linspace( xrange_min, xrange_max, 1000)
             ys = lambdify(t, function0, "numpy")(ts)
             fig, ax = plt.subplots()
-            plt.xlabel("$t$軸")
-            plt.ylabel("$x$軸")
+            plt.xlabel("$t$")
+            plt.ylabel("$x$")
             ax.plot(ts, ys)
             ax.grid()
             st.pyplot(fig)
